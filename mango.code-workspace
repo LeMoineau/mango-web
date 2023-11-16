@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "mango-scraper-api"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
+    "editor.rulers": [
+      {
+        "column": 80,
+        "color": "#16a085"
+      },
+      {
+        "column": 100,
+        "color": "#c0392b"
+      }
+    ],
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true
+  }
+}

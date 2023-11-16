@@ -1,7 +1,7 @@
 package mangaplus;
 syntax = "proto3";
 
-message Root{
+message Web_homeV3{
   message Parent{
     message Data{
       message TopBanners {

@@ -2,6 +2,8 @@ import { Router, Request, Response } from "express";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response) => {});
+router.get("/", async (req: Request, res: Response) => {});
+router.get("/:name/", async (req: Request, res: Response) => {});
+router.get("/:name/chapters", async (req: Request, res: Response) => {});
 
 export default router;

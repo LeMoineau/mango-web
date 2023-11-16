@@ -1,5 +1,5 @@
-import Chapter from "./Chapter";
-import Manga from "./Manga";
+import Chapter from "../types/chapter";
+import Manga from "../types/manga";
 
 export default interface Scraper {
   getLatestChapters: () => Promise<Chapter[]>;

@@ -1,10 +1,8 @@
 import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/routes";
-
-dotenv.config();
+import "./config/init";
 
 const app: Express = express();
 const jsonParser = bodyParser.json();

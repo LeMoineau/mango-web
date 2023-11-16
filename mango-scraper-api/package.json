@@ -1,64 +1,37 @@
 {
-  "name": "mango-scraper-api",
+  "name": "mailsender-api",
   "version": "1.0.0",
-  "private": true,
+  "description": "api to send mail",
+  "main": "index.js",
   "scripts": {
-    "dev": "node ace serve --watch",
-    "build": "node ace build --production",
-    "start": "node server.js",
-    "test": "node ace test",
-    "lint": "eslint . --ext=.ts",
-    "format": "prettier --write ."
+    "build": "rimraf dist && tsc",
+    "add-build": "git add dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts"
   },
-  "eslintConfig": {
-    "extends": [
-      "plugin:adonis/typescriptApp",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "build"
+  "pre-commit": [
+    "build",
+    "add-build"
   ],
-  "prettier": {
-    "trailingComma": "es5",
-    "semi": false,
-    "singleQuote": true,
-    "useTabs": false,
-    "quoteProps": "consistent",
-    "bracketSpacing": true,
-    "arrowParens": "always",
-    "printWidth": 100
-  },
+  "author": "Pierrot",
+  "license": "ISC",
   "devDependencies": {
-    "@adonisjs/assembler": "^5.9.6",
-    "@japa/preset-adonis": "^1.2.0",
-    "@japa/runner": "^2.5.1",
-    "@types/proxy-addr": "^2.0.3",
-    "@types/source-map-support": "^0.5.10",
-    "adonis-preset-ts": "^2.1.0",
-    "eslint": "^8.53.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-adonis": "^2.1.1",
-    "eslint-plugin-prettier": "^5.0.1",
-    "pino-pretty": "^10.2.3",
+    "@types/cors": "^2.8.16",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.0",
+    "nodemon": "^3.0.1",
+    "pre-commit": "^1.2.2",
     "prettier": "^3.1.0",
-    "typescript": "~4.6",
-    "youch": "^3.3.3",
-    "youch-terminal": "^2.2.3"
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@adonisjs/core": "^5.9.0",
-    "@adonisjs/repl": "^3.1.11",
-    "proxy-addr": "^2.0.7",
-    "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21"
+    "@types/body-parser": "^1.19.5",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
   }
 }

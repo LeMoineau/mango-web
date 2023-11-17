@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import chaptersRoute from "./chapters";
+import chaptersRoute from "./chapters-routes";
 import mangasRoute from "./mangas";
 
 const router = Router();

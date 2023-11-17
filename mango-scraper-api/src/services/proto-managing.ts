@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Type, load } from "protobufjs";
+import { Reader, Type, load } from "protobufjs";
 
 export namespace ProtoManaging {
   export async function loadProtoFileAsync(
@@ -32,5 +32,12 @@ export namespace ProtoManaging {
         responseType: "arraybuffer",
       })
       .then((res) => res.data);
+  }
+
+  export function decodeToJson(
+    type: Type,
+    toDecode: Reader | Uint8Array
+  ): { [key: string]: any } {
+    return type.decode(toDecode).toJSON();
   }
 }

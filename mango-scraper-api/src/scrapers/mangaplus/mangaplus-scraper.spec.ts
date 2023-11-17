@@ -1,31 +1,46 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { ProtoManaging } from "../../services/proto-managing";
-import { MangaPlusScraper } from "./mangaplus-scraper";
+import { Type } from "protobufjs";
+import {
+  exampleFinalMangaPlusChaptersJson,
+  exampleWeb_homeV3Json,
+} from "./specs-utils/correct-response-example";
+import mangaPlusScraper from "./mangaplus-scraper";
 
 describe("mangaplus-scraper", () => {
-  it("should call ProtoManaging httpGetProtoFile when get all chapters", async () => {
-    vi.spyOn(ProtoManaging, "httpGetProtoFile");
+  const A_Uint8Array: Uint8Array = {} as Uint8Array;
+  const A_TYPE: Type = {} as Type;
+  const A_CORRECT_JSON: { [key: string]: any } = exampleWeb_homeV3Json;
 
-    await MangaPlusScraper.getLatestChapters();
-
-    expect(ProtoManaging.httpGetProtoFile).toHaveBeenCalled();
+  beforeAll(() => {
+    vi.spyOn(ProtoManaging, "httpGetProtoFile").mockResolvedValue(A_Uint8Array);
+    vi.spyOn(ProtoManaging, "loadProtoFileAsync").mockResolvedValue(A_TYPE);
+    vi.spyOn(ProtoManaging, "decodeToJson").mockReturnValue(A_CORRECT_JSON);
   });
 
   it("should call ProtoManaging httpGetProtoFile with correct endpoint when get all chapters", async () => {
-    vi.spyOn(ProtoManaging, "httpGetProtoFile");
-
-    await MangaPlusScraper.getLatestChapters();
+    await mangaPlusScraper.getLatestChapters();
 
     expect(ProtoManaging.httpGetProtoFile).toHaveBeenCalledWith(
-      `https://jumpg-webapi.tokyo-cdn.com/api/web/web_homeV3?lang=fra`
+      `${mangaPlusScraper["API_ENDPOINT"]}/web/web_homeV3?lang=fra`
     );
   });
 
   it("should call ProtoManaging loadProtoFileAsync when get all chapters", async () => {
-    vi.spyOn(ProtoManaging, "loadProtoFileAsync");
-
-    await MangaPlusScraper.getLatestChapters();
+    await mangaPlusScraper.getLatestChapters();
 
     expect(ProtoManaging.loadProtoFileAsync).toHaveBeenCalled();
+  });
+
+  it("should call decodeToJson when getting all chapters", async () => {
+    await mangaPlusScraper.getLatestChapters();
+
+    expect(ProtoManaging.decodeToJson).toHaveBeenCalled();
+  });
+
+  it("should return correct chapters json when getting all chapters", async () => {
+    const chapters = await mangaPlusScraper.getLatestChapters();
+
+    expect(chapters).toStrictEqual(exampleFinalMangaPlusChaptersJson);
   });
 });

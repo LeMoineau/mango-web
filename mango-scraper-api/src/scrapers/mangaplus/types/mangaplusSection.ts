@@ -1,4 +1,4 @@
-import { MangaPlusCard } from "./card";
+import { MangaPlusCard } from "./mangaplusCard";
 
 export interface MangaPlusSection {
   title: string;

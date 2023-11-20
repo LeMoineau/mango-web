@@ -4,7 +4,7 @@ import { Type } from "protobufjs";
 import {
   exampleFinalMangaPlusChaptersJson,
   exampleWeb_homeV3Json,
-} from "./specs-utils/correct-response-example";
+} from "./test-examples/correct-response-example";
 import mangaPlusScraper from "./mangaplus-scraper";
 
 describe("mangaplus-scraper", () => {

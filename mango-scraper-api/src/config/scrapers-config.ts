@@ -1,4 +1,5 @@
-import mangaPlusScraper from "../scrapers/mangaplus/mangaplus-scraper";
+import mangaplusScraper from "../scrapers/mangaplus/mangaplus-scraper";
+import mangasakiScraper from "../scrapers/mangasaki/mangasaki-scraper";
 import { ScrapersConfig } from "../types/scrapersConfig";
 
 export default {
@@ -6,7 +7,12 @@ export default {
     mangaplus: {
       enabled: true,
       trustLevel: 1,
-      scraper: mangaPlusScraper,
+      scraper: mangaplusScraper,
+    },
+    mangasaki: {
+      enabled: true,
+      trustLevel: 2,
+      scraper: mangasakiScraper,
     },
   },
 } as ScrapersConfig;

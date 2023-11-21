@@ -1,4 +1,5 @@
 import ScraperParsingError from "../../errors/ScraperParsingError";
+import { ArrayUtils } from "../../services/array-utils";
 import { ProtoManaging } from "../../services/proto-managing";
 import { TextFormatUtils } from "../../services/text-format-utils";
 import Chapter from "../../types/chapter";
@@ -21,14 +22,13 @@ class MangaPlusScraper implements Scraper {
     );
     const jsonRes = ProtoManaging.decodeToJson(Message, res);
     const chapters: Chapter[] = [];
-    console.log(jsonRes);
     try {
       for (let s of jsonRes.parent.data.sections) {
         chapters.push(
           ...s.cards.map((c: MangaPlusCard) => {
             return {
               number: TextFormatUtils.formatChapterNumber(
-                c.chapter.chapter.split("#")[1]
+                ArrayUtils.tryingSplitAndGet(c.chapter.chapter, "#", 1)
               ),
               id: c.chapter.id.toString(),
               image: c.chapter.manga.portraitThumbnail,
@@ -42,6 +42,7 @@ class MangaPlusScraper implements Scraper {
         );
       }
     } catch (error) {
+      console.error(error);
       throw new ScraperParsingError(
         "json recieved from manga plus api not have the expected format"
       );

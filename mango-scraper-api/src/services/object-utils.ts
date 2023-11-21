@@ -1,12 +1,12 @@
 import { JsonObject } from "../types/jsonObject";
 
 export namespace ObjectUtils {
-  export function forEachKeyInObject(
+  export async function forEachKeyInObject(
     object: JsonObject,
-    callback: (key: string, value: any) => void
-  ) {
+    callback: (key: string, value: any) => void | Promise<void>
+  ): Promise<void> {
     for (let key of Object.keys(object)) {
-      callback(key, object[key]);
+      await callback(key, object[key]);
     }
   }
 }

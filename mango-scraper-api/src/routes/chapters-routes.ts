@@ -1,7 +1,5 @@
 import { Router, Request, Response } from "express";
-import ChaptersController from "../controllers/chapters-controller";
-
-export const chaptersController = new ChaptersController();
+import chaptersController from "../controllers/chapters-controller";
 
 const router = Router();
 

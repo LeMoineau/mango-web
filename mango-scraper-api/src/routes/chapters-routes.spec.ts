@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import request from "supertest";
-import { chaptersController } from "./chapters-routes";
 import express from "express";
 import chaptersRouter from "./chapters-routes";
+import chaptersController from "../controllers/chapters-controller";
 
 describe("chapters-routes", () => {
   const AN_ERROR = "une erreur";
